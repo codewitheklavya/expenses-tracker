@@ -9,7 +9,7 @@ app.get("/",(req,res)=>{
     res.send("API is running");
 })
 
-app.use("/api/v1/expenses", expenseRoutes)
+app.use("/api/expenses", expenseRoutes)
 
 
 module.exports = app;
