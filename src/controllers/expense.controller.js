@@ -9,6 +9,7 @@ const createExpense = async (req,res)=>{
             amount,
             category,
             description,
+            user: req.user.id,
         });
 
         res.status(201).json({
@@ -43,7 +44,10 @@ const getAllExpense = async (req,res)=>{
 
 const getSingleExpense = async (req,res)=>{
     try{
-        const expense = await Expense.findById(req.params.id);
+        const expense = await Expense.findOne({
+            _id: req.params.id,
+            user: req.user.id,
+        })
 
         if(!expense){
             return res.status(404).json({
@@ -66,13 +70,16 @@ const getSingleExpense = async (req,res)=>{
 
 const updateExpense = async (req,res)=>{
     try{
-        const updatedExpense = await Expense.findByIdAndUpdate(
-            req.params.id,
-            req.body,
-        {
-            new: true,
-        }
-        );
+        const updatedExpense = await Expense.findOneAndUpdate(
+    {
+        _id: req.params.id,
+        user: req.user.id,
+    },
+        req.body,
+    {
+        new: true,
+    }
+    );
         
         if(!updatedExpense){
             return res.status(404).json({
@@ -95,8 +102,10 @@ const updateExpense = async (req,res)=>{
 
 const deleteExpense = async (req,res)=>{
     try{
-        const deletedExpense = await Expense.findByIdAndDelete(req.params.id);
-
+        const deletedExpense = await Expense.findOneAndDelete({
+        _id: req.params.id,
+        user: req.user.id,
+    });
         if(!deletedExpense){
             return res.status(404).json({
                 success: false,

@@ -6,9 +6,9 @@ const router = express.Router();
 
 router.post("/",protect,createExpense);
 
-router.get("/",getAllExpense);  
+router.get("/",protect,getAllExpense);  
 
-router.get("/:id",getSingleExpense)
+router.get("/:id",protect,getSingleExpense)
 
 router.put("/:id",protect,updateExpense)
 
