@@ -27,7 +27,9 @@ const createExpense = async (req,res)=>{
 
 const getAllExpense = async (req,res)=>{
     try{
-        const expenses = await Expense.find();
+        const expenses = await Expense.find({
+            user: req.user.id,
+        });
 
         res.status(200).json({
             success: true,
