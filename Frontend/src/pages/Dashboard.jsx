@@ -95,37 +95,129 @@ function Dashboard(){
 
     //return UI
     return (
-        <div>
-            
-            <h1>Daskboard</h1>
+        <div className="min-h-screen bg-gray-100 p-6">
 
-            <button onClick={handleLogout} className="bg-red-500 px-2 py-1 ml-200 cursor-pointer hover:bg-red-800">Logout</button>
-            {/* FORM */}
-            <form onSubmit={createExpenses}>
+    {/* Header */}
+    <div className="flex justify-between items-center mb-8">
+        <h1 className="text-4xl font-bold text-gray-800">
+            Dashboard
+        </h1>
 
-                <input type="text" name="title" placeholder="title" value={formData.title} onChange={handleChange} />
-                <br /><br />
-                <input type="Number" name="amount" placeholder="Amount" value={formData.amount} onChange={handleChange} />
-                <br /><br />
-                <input type="text" name="category" placeholder="category" value={formData.category} onChange={handleChange} />
-                <br /><br />
-                <input type="text" name="description" placeholder="description" value={formData.description} onChange={handleChange} />
-                <button type="submit">Add Expenses</button>
-            </form>
-            {/**Expenses List */}
-            {expenses.map((expense) => {
-            return (
-                <div key={expense._id}>
-                <h3>{expense.title}</h3>
-                <p>Amount: {expense.amount}</p>
-                <p>Category: {expense.category}</p>
-                <p>Description: {expense.description}</p>
-                <button className="bg-red-600 py-1 px-2 ml-0.5 cursor-pointer" onClick={()=>{deleteExpenses(expense._id)}}>Delete</button>
-                <hr />
+        <button
+            onClick={handleLogout}
+            className="bg-red-500 text-white px-5 py-2 rounded-lg cursor-pointer hover:bg-red-700 transition"
+        >
+            Logout
+        </button>
+    </div>
+
+    {/* Main Layout */}
+    <div className="flex flex-col lg:flex-row gap-8">
+
+        {/* Left Side - Form */}
+        <div className="lg:w-1/3">
+            <div className="bg-white p-6 rounded-xl shadow-md sticky top-5">
+
+                <h2 className="text-2xl font-semibold mb-5 text-gray-700">
+                    Add Expense
+                </h2>
+
+                <form onSubmit={createExpenses} className="space-y-4">
+
+                    <input
+                        type="text"
+                        name="title"
+                        placeholder="Title"
+                        value={formData.title}
+                        onChange={handleChange}
+                        className="w-full border border-gray-300 p-3 rounded-lg outline-none focus:ring-2 focus:ring-blue-400"
+                    />
+
+                    <input
+                        type="number"
+                        name="amount"
+                        placeholder="Amount"
+                        value={formData.amount}
+                        onChange={handleChange}
+                        className="w-full border border-gray-300 p-3 rounded-lg outline-none focus:ring-2 focus:ring-blue-400"
+                    />
+
+                    <input
+                        type="text"
+                        name="category"
+                        placeholder="Category"
+                        value={formData.category}
+                        onChange={handleChange}
+                        className="w-full border border-gray-300 p-3 rounded-lg outline-none focus:ring-2 focus:ring-blue-400"
+                    />
+
+                    <input
+                        type="text"
+                        name="description"
+                        placeholder="Description"
+                        value={formData.description}
+                        onChange={handleChange}
+                        className="w-full border border-gray-300 p-3 rounded-lg outline-none focus:ring-2 focus:ring-blue-400"
+                    />
+
+                    <button
+                        type="submit"
+                        className="bg-blue-500 text-white px-5 py-3 rounded-lg hover:bg-blue-700 transition cursor-pointer w-full"
+                    >
+                        Add Expense
+                    </button>
+                </form>
             </div>
-        );
-    })}
         </div>
+
+        {/* Right Side - Expenses */}
+        <div className="lg:w-2/3">
+
+            <h2 className="text-2xl font-bold text-gray-700 mb-5">
+                Your Expenses
+            </h2>
+
+            <div className="grid gap-5 md:grid-cols-2">
+
+                {expenses.map((expense) => {
+                    return (
+                        <div
+                            key={expense._id}
+                            className="bg-white p-5 rounded-xl shadow-md hover:shadow-lg transition"
+                        >
+                            <h3 className="text-2xl font-bold text-gray-800 mb-3">
+                                {expense.title}
+                            </h3>
+
+                            <p className="text-gray-600 mb-1">
+                                <span className="font-semibold">Amount:</span> ₹{expense.amount}
+                            </p>
+
+                            <p className="text-gray-600 mb-1">
+                                <span className="font-semibold">Category:</span> {expense.category}
+                            </p>
+
+                            <p className="text-gray-600 mb-4">
+                                <span className="font-semibold">Description:</span> {expense.description}
+                            </p>
+
+                            <button
+                                className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition cursor-pointer"
+                                onClick={() => {
+                                    deleteExpenses(expense._id);
+                                }}
+                            >
+                                Delete
+                            </button>
+                        </div>
+                    );
+                })}
+
+            </div>
+        </div>
+
+    </div>
+</div>
     )
 }
 

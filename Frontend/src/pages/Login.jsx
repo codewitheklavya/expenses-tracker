@@ -40,37 +40,51 @@ function Login() {
   };
 
     return (
-  <div>
-    <h1>Login</h1>
+  <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
 
-    <form onSubmit={handleSubmit}>
-      <input
-        type="email"
-        name="email"
-        placeholder="Enter email"
-        onChange={handleChange}
-      />
+    <div className="bg-white w-full max-w-md p-8 rounded-2xl shadow-lg">
 
-      <br />
-      <br />
+      <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">
+        Login
+      </h1>
 
-      <input
-        type="password"
-        name="password"
-        placeholder="Enter password"
-        onChange={handleChange}
-      />
+      <form onSubmit={handleSubmit} className="space-y-5">
 
-      <br />
-      <br />
+        <input
+          type="email"
+          name="email"
+          placeholder="Enter email"
+          onChange={handleChange}
+          className="w-full border border-gray-300 p-3 rounded-lg outline-none focus:ring-2 focus:ring-blue-400"
+        />
 
-      <button type="submit">Login</button>
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter password"
+          onChange={handleChange}
+          className="w-full border border-gray-300 p-3 rounded-lg outline-none focus:ring-2 focus:ring-blue-400"
+        />
 
-      <p>
-        If you don't have an account?{" "}
-        <Link to="/signup">Signup</Link>
-      </p>
-    </form>
+        <button
+          type="submit"
+          className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-700 transition cursor-pointer font-semibold"
+        >
+          Login
+        </button>
+
+        <p className="text-center text-gray-600">
+          If you don't have an account?{" "}
+          <Link
+            to="/signup"
+            className="text-blue-500 font-semibold hover:underline"
+          >
+            Signup
+          </Link>
+        </p>
+
+      </form>
+    </div>
   </div>
 );
 }

@@ -45,47 +45,54 @@ import { Navigate, useNavigate } from "react-router-dom";
     };
 
     return (
-        <div>
-        <h1>Signup</h1>
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center px-4">
 
-        <form onSubmit={handleSubmit}>
-            <input
-            type="text"
-            name="name"
-            placeholder="Enter name"
-            value={formData.name}
-            onChange={handleChange}
-            />
+        <div className="bg-white w-full max-w-md p-8 rounded-2xl shadow-lg">
 
-            <br />
-            <br />
+      <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">
+        Signup
+      </h1>
 
-            <input
-            type="email"
-            name="email"
-            placeholder="Enter email"
-            value={formData.email}
-            onChange={handleChange}
-            />
+      <form onSubmit={handleSubmit} className="space-y-5">
 
-            <br />
-            <br />
+        <input
+          type="text"
+          name="name"
+          placeholder="Enter name"
+          value={formData.name}
+          onChange={handleChange}
+          className="w-full border border-gray-300 p-3 rounded-lg outline-none focus:ring-2 focus:ring-blue-400"
+        />
 
-            <input
-            type="password"
-            name="password"
-            placeholder="Enter password"
-            value={formData.password}
-            onChange={handleChange}
-            />
+        <input
+          type="email"
+          name="email"
+          placeholder="Enter email"
+          value={formData.email}
+          onChange={handleChange}
+          className="w-full border border-gray-300 p-3 rounded-lg outline-none focus:ring-2 focus:ring-blue-400"
+        />
 
-            <br />
-            <br />
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter password"
+          value={formData.password}
+          onChange={handleChange}
+          className="w-full border border-gray-300 p-3 rounded-lg outline-none focus:ring-2 focus:ring-blue-400"
+        />
 
-            <button type="submit" className="cursor-pointer">Signup</button>
-        </form>
-        </div>
-    );
+        <button
+          type="submit"
+          className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-700 transition cursor-pointer font-semibold"
+        >
+          Signup
+        </button>
+
+      </form>
+    </div>
+  </div>
+);
     }
 
     export default Signup;
